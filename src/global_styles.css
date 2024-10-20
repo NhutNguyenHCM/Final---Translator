@@ -1,0 +1,165 @@
+/* Add application styles & imports to this file! */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #3498db;
+  --primary-hover-color: #2980b9;
+  --secondary-color: #ecf0f1;
+  --secondary-hover-color: #bdc3c7;
+  --background-color: #f4f4f4;
+  --card-background: #ffffff;
+  --text-color: #333333;
+  --error-color: #e74c3c;
+  --border-color: #dddddd;
+  --input-background: #ffffff;
+  --transcript-background: #f9f9f9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #3498db;
+    --primary-hover-color: #2980b9;
+    --secondary-color: #34495e;
+    --secondary-hover-color: #2c3e50;
+    --background-color: #1a1a1a;
+    --card-background: #2c3e50;
+    --text-color: #ecf0f1;
+    --error-color: #e74c3c;
+    --border-color: #34495e;
+    --input-background: #34495e;
+    --transcript-background: #34495e;
+  }
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.card {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--input-background);
+  color: var(--text-color);
+  font-size: 16px;
+  resize: vertical;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button.primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+button.primary:hover {
+  background-color: var(--primary-hover-color);
+}
+
+button.secondary {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+button.secondary:hover {
+  background-color: var(--secondary-hover-color);
+}
+
+button.active {
+  background-color: var(--error-color);
+  color: white;
+}
+
+.output-section {
+  margin-top: 20px;
+}
+
+.transcript-container {
+  display: flex;
+  gap: 20px;
+}
+
+.transcript-column {
+  flex: 1;
+  background-color: var(--transcript-background);
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.transcript-item {
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.transcript-item.interim {
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.translating-message, .error-message {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.translating-message {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.error-message {
+  background-color: var(--error-color);
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .transcript-container {
+    flex-direction: column;
+  }
+}
