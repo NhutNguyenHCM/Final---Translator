@@ -51,19 +51,47 @@ interface TranscriptItem {
         <div class="output-section" *ngIf="transcript.length > 0">
           <h2>Transcript:</h2>
           <div class="transcript-container">
-            <div class="transcript-column">
-              <h3>Original</h3>
-              <div *ngFor="let item of transcript" class="transcript-item" [class.interim]="!item.isFinal">
-                {{ item.original }}
-              </div>
-            </div>
-            <div class="transcript-column">
-              <h3>Translated</h3>
-              <div *ngFor="let item of transcript" class="transcript-item" [class.interim]="!item.isFinal">
-                {{ item.translated }}
-              </div>
-            </div>
-          </div>
+  <!-- Cột Original -->
+  <div class="transcript-column">
+    <h3>Original</h3>
+    
+    <!-- Final transcripts -->
+    <div
+      *ngFor="let item of finalTranscripts"
+      class="transcript-item"
+    >
+      {{ item.original }}
+    </div>
+
+    <!-- Interim transcript -->
+    <div
+      *ngFor="let item of interimTranscripts"
+      class="transcript-item interim"
+    >
+      {{ item.original }}
+    </div>
+  </div>
+
+  <!-- Cột Translated -->
+  <div class="transcript-column">
+    <h3>Translated</h3>
+
+    <div
+      *ngFor="let item of finalTranscripts"
+      class="transcript-item"
+    >
+      {{ item.translated }}
+    </div>
+
+    <div
+      *ngFor="let item of interimTranscripts"
+      class="transcript-item interim"
+    >
+      {{ item.translated }}
+    </div>
+  </div>
+</div>
+
         </div>
         <!-- <p *ngIf="isTranslating" class="translating-message">
           <i class="fas fa-spinner fa-spin"></i> Translating...
@@ -86,7 +114,7 @@ interface TranscriptItem {
 export class App implements OnDestroy {
   inputText = '';
   translatedText = '';
-  apiKey = 'AIzaSyDcaX3yqW6g2z1lDBJqDvt8n__82wSGKHA';
+  apiKey = 'AIzaSyCLCZZkxRLES0YX8IqV5n_Kq_n3Djzji_g';
   isTranslating = false;
   error: string | null = null;
   isListening = false;
@@ -251,6 +279,7 @@ export class App implements OnDestroy {
         } else {
           return of('No translation available.');
         }
+        
       })
     );
   }
@@ -270,6 +299,13 @@ export class App implements OnDestroy {
 
   private formatTranslation(text: string): string {
     return text.trim();
+  }
+  get finalTranscripts(): TranscriptItem[] {
+    return this.transcript.filter(t => t.isFinal);
+  }
+  
+  get interimTranscripts(): TranscriptItem[] {
+    return this.transcript.filter(t => !t.isFinal);
   }
 }
 
